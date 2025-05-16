@@ -66,10 +66,6 @@
             font-weight: bold;
             text-align: center;
         }
-        .result span {
-            display: block;
-            margin-bottom: 5px;
-        }
         .result strong {
             color: #004d40;
         }
@@ -102,19 +98,29 @@
 
     <script>
         function calculate() {
+            // Getting values from the input fields
             const avans = parseFloat(document.getElementById("avans").value) || 0;
             const refundacija = parseFloat(document.getElementById("refundacija").value) || 0;
             const rashodi = parseFloat(document.getElementById("rashodi").value) || 0;
 
-            const rezultat = avans - rashodi + refundacija;
+            // Initialize the result
+            let rezultat = avans - rashodi + refundacija;
+
+            // Ensure the refund does not exceed the advance
+            if (refundacija > avans) {
+                rezultat = avans;
+            }
+
             const resultElement = document.getElementById("result");
 
+            // Display the result based on the calculation
             if (rezultat > 0) {
                 resultElement.innerHTML = `Potrebno vratiti: <strong>${rezultat.toFixed(2)} €</strong>`;
             } else {
                 resultElement.innerHTML = "<strong>Nije potrebno vratiti avans, odraditi verifikaciju.</strong>";
             }
 
+            // Show the result container
             resultElement.style.display = 'block';
         }
     </script>
