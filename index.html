@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator povratka sredstava</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #00695c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: #00838f;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #00838f;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #00838f;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #006064;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e0f2f1;
+            padding: 15px;
+            border: 1px solid #00838f;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .result span {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .result strong {
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kalkulator povratka sredstava</h1>
+
+        <div class="form-group">
+            <label for="avans">Isplaćeni avans (€):</label>
+            <input type="number" id="avans" placeholder="Unesite iznos avansa" step="0.01" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="refundacija">Refundacija od treće organizacije (€):</label>
+            <input type="number" id="refundacija" placeholder="Unesite iznos refundacije" step="0.01" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="rashodi">Ukupni rashodi učesnika (€):</label>
+            <input type="number" id="rashodi" placeholder="Unesite ukupne rashode" step="0.01" min="0">
+        </div>
+
+        <button onclick="calculate()">Izračunaj</button>
+
+        <div class="result" id="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const avans = parseFloat(document.getElementById("avans").value) || 0;
+            const refundacija = parseFloat(document.getElementById("refundacija").value) || 0;
+            const rashodi = parseFloat(document.getElementById("rashodi").value) || 0;
+
+            const rezultat = avans - rashodi + refundacija;
+            const resultElement = document.getElementById("result");
+
+            if (rezultat > 0) {
+                resultElement.innerHTML = `Potrebno vratiti: <strong>${rezultat.toFixed(2)} €</strong>`;
+            } else {
+                resultElement.innerHTML = "<strong>Nije potrebno vratiti</strong>";
+            }
+
+            resultElement.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
