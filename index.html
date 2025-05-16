@@ -98,29 +98,29 @@
 
     <script>
         function calculate() {
-            // Getting values from the input fields
+            // Get values from the input fields
             const avans = parseFloat(document.getElementById("avans").value) || 0;
             const refundacija = parseFloat(document.getElementById("refundacija").value) || 0;
             const rashodi = parseFloat(document.getElementById("rashodi").value) || 0;
 
-            // Initialize the result
+            // Calculate the potential refund amount
             let rezultat = avans - rashodi + refundacija;
 
-            // Ensure the refund does not exceed the advance
-            if (refundacija > avans) {
+            // Cap the refund amount to the advance if it exceeds
+            if (rezultat > avans) {
                 rezultat = avans;
             }
 
             const resultElement = document.getElementById("result");
 
-            // Display the result based on the calculation
+            // Display the correct result based on the calculation
             if (rezultat > 0) {
                 resultElement.innerHTML = `Potrebno vratiti: <strong>${rezultat.toFixed(2)} €</strong>`;
             } else {
                 resultElement.innerHTML = "<strong>Nije potrebno vratiti avans, odraditi verifikaciju.</strong>";
             }
 
-            // Show the result container
+            // Make the result visible
             resultElement.style.display = 'block';
         }
     </script>
