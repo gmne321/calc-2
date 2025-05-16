@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator povratka sredstava</title>
+    <title>Kalkulator povrata avansa</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -78,7 +78,7 @@
 <body>
 
     <div class="container">
-        <h1>Kalkulator povratka sredstava</h1>
+        <h1>Kalkulator povrata avansa</h1>
 
         <div class="form-group">
             <label for="avans">Isplaćeni avans (€):</label>
@@ -112,7 +112,7 @@
             if (rezultat > 0) {
                 resultElement.innerHTML = `Potrebno vratiti: <strong>${rezultat.toFixed(2)} €</strong>`;
             } else {
-                resultElement.innerHTML = "<strong>Nije potrebno vratiti</strong>";
+                resultElement.innerHTML = "<strong>Nije potrebno vratiti sredstva, odraditi verifikaciju.</strong>";
             }
 
             resultElement.style.display = 'block';
